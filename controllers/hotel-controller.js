@@ -7,6 +7,12 @@ exports.hotels = async (req, res) => {
   res.json(hotels);
 }
 
+exports.hotel = async (req, res) => {
+  const hotelId  = req.hotelId;
+  const hotel = await Hotel.findByPk(hotelId);
+  res.json(hotel);
+}
+
 exports.createHotel = async (req, res) => {
   const { name, local, number } = req.body;
   const hotel = await Hotel.create({
