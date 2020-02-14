@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const Hotel = require('./models/Hotel');
 const Room = require('./models/Room');
 const Service = require('./models/Service');
+const Roomer = require('./models/Roomer');
+const RoomerExpenses = require('./models/RoomerExpenses');
 
 const sequelize = require('./DB/sequelize');
 const routes = require('./routes/router');
@@ -23,8 +25,8 @@ app.use('/', (req, res, next) => {
   const token = headerAuth.split(' ')[1];
 
   jwt.verify(
-    token, 
-    'Hotel_Management_App_Secret', 
+    token,
+    'Hotel_Management_App_Secret',
     (err, decodedToken) => {
       req.hotelId = decodedToken.hotel.id;
       next();
@@ -38,6 +40,12 @@ Hotel.hasMany(Room);
 Room.belongsTo(Hotel);
 Hotel.hasMany(Service);
 Service.belongsTo(Hotel);
+Hotel.hasMany(Roomer);
+Roomer.belongsTo(Hotel);
+Roomer.hasOne(RoomerExpenses);
+RoomerExpenses.belongsTo(Roomer);
+RoomerExpenses.belongsTo(Hotel);
+
 
 sequelize
   // .sync({ force: true })

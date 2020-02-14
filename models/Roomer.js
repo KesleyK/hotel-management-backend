@@ -8,7 +8,11 @@ const Roomer = sequelize.define('roomer', {
     allowNull: false
   },
   cpf: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  atRoom: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   checkIn: {

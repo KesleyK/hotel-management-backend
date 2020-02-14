@@ -11,12 +11,18 @@ const Room = sequelize.define('room', {
   },
   number: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: false
   },
   dailyRate: {
     type: Sequelize.FLOAT,
-    allowNull: false,
+    allowNull: false
   },
+  isRented: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false
+  },
+  roomerCpf: Sequelize.INTEGER,
+  rentedUntil: Sequelize.DATE,
   description: Sequelize.STRING
 });
 
